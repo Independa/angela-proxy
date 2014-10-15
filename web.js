@@ -105,6 +105,11 @@ app.get('/load-test', function(req, res){
 
 });
 
+/* Loader IO Setup */
+app.get('/loaderio-d4b017f84bbec656056d5eb13c03b9df', function(req, res){
+  res.send('loaderio-d4b017f84bbec656056d5eb13c03b9df');
+});
+
 var port = Number(process.env.PORT || 5111);
 
 app.listen(port, function() {
