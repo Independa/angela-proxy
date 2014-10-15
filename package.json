@@ -10,7 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.9.7",
-    "logfmt": "^1.2.0"
+    "logfmt": "^1.2.0",
+    "fb": "^0.7.0"
   },
   "devDependencies": {
     "fb": "^0.7.0"
