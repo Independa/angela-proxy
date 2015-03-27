@@ -1,13 +1,19 @@
 var express = require("express");
 var logfmt = require("logfmt");
 var app = express();
-var FB = require('fb');
+var FB = require('./fb/fb.js');
 
 app.use(logfmt.requestLogger());
-
+/*app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://qa-our.independa.com");
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
+  next();
+});*/
 app.get('/', function(req, res){
   res.send("Independa Proxy");
 });
+
 
 // "params" need to be url encoded
 // example: http://localhost:5111/fb/api?params=%7B%22method%22%3A%22fql.multiquery%22%2C%22queries%22%3A%7B%22photos%22%3A%22SELECT%20object_id%2C%20src_big%2C%20caption%2C%20owner%2C%20created%20FROM%20photo%20WHERE%20created%20%3E%20782687579%20AND%20album_object_id%3D10102435650518665%20ORDER%20BY%20created%20DESC%20LIMIT%20100%22%2C%22photos_users%22%3A%22SELECT%20uid%2C%20first_name%2C%20last_name%2C%20pic%2C%20pic_square%20FROM%20user%20WHERE%20uid%20IN%20(SELECT%20owner%20FROM%20%23photos)%22%2C%22photo_reg%22%3A%22SELECT%20photo_id%2C%20src%20FROM%20photo_src%20WHERE%20photo_id%20IN%20(SELECT%20object_id%20FROM%20%23photos)%20AND%20(width%20%3E%20640%20OR%20height%20%3E%20480)%20ORDER%20BY%20width%22%2C%22photo_small%22%3A%22SELECT%20photo_id%2C%20src%20FROM%20photo_src%20WHERE%20photo_id%20IN%20(SELECT%20object_id%20FROM%20%23photos)%20AND%20(width%20%3E%20300%20OR%20height%20%3E%20300)%20ORDER%20BY%20width%22%2C%22photo_big%22%3A%22SELECT%20photo_id%2C%20src%20FROM%20photo_src%20WHERE%20photo_id%20IN%20(SELECT%20object_id%20FROM%20%23photos)%20AND%20(width%20%3E%3D%201280%20OR%20height%20%3E%3D%20720)%20ORDER%20BY%20width%22%7D%2C%22access_token%22%3A%22CAAFajLNoYD0BAMQiyuvkdhU2MwZAsXoME5wkNAAkRiglhXpQ9G6oKHMIRNBXP7ci7XMvUfiZBpA4qwLjd1KupFHJ1F04aJPcWXa7wTFgpxns0J5CUHQsWo9LBfw8HN0hp30ZBxM7r5oGchl4kYwOk5ygelsHmnfohKDmXB0o3VTClQMkmsgDamLMWDT00QZD%22%7D
