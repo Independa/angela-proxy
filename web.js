@@ -10,6 +10,27 @@ app.use(logfmt.requestLogger());
   res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
   next();
 });*/
+
+// Enables CORS
+var enableCORS = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+
+    // intercept OPTIONS method
+    if ('OPTIONS' == req.method) {
+      res.send(200);
+    }
+    else {
+      next();
+    }
+};
+
+
+// enable CORS!
+app.use(enableCORS);
+
+
 app.get('/', function(req, res){
   res.send("Independa Proxy");
 });
@@ -89,6 +110,11 @@ app.get('/load-test', function(req, res){
     res.send('Success!');
   }, 5000);
 
+});
+
+/* Loader IO Setup */
+app.get('/loaderio-d4b017f84bbec656056d5eb13c03b9df', function(req, res){
+  res.send('loaderio-d4b017f84bbec656056d5eb13c03b9df');
 });
 
 var port = Number(process.env.PORT || 5111);
